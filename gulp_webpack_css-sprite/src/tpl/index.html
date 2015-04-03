@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="index-page">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>{%=o.htmlWebpackPlugin.options.title || 'Webpack App'%}</title>
+{% var chunk = o.webpack.assetsByChunkName['commons'];if(chunk && chunk[1]){ %}
+<link rel="stylesheet" href="{%=chunk[1]%}">
+{% } %}
+{% var chunk = o.webpack.assetsByChunkName[o.htmlWebpackPlugin.options.entry];if(chunk && chunk[1]){ %}
+<link rel="stylesheet" href="{%=chunk[1]%}">
+{% } %}
+</head>
+<body>
+<h1>webpack</h1>
+
+<i mod="main"></i>
+<i mod="sub"></i>
+
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+{% var chunk = o.htmlWebpackPlugin.assets['commons'];if(chunk){ %}
+<script src="{%=chunk%}"></script>
+{% } %}
+{% var chunk = o.htmlWebpackPlugin.assets[o.htmlWebpackPlugin.options.entry];if(chunk){ %}
+<script src="{%=chunk%}"></script>
+{% } %}
+<!-- {% for (var chunk in o.webpack.assetsByChunkName) {var css = o.webpack.assetsByChunkName[chunk][1];if (css.length > 1) { %}
+<link rel="stylesheet" href="{%=css%}">
+{% }} %} -->
+<!-- {% for (var chunk in o.htmlWebpackPlugin.assets) { %}
+<script src="{%=o.htmlWebpackPlugin.assets[chunk]%}"></script>
+{% } %} -->
+</body>
+</html>

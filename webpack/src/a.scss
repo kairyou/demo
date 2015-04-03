@@ -1,0 +1,10 @@
+@import "./_base";
+
+.game23 {
+	// color: red;
+    .create-wrap {
+        border: 1px solid #c9c9c9;
+        @include border-radius(3px);
+        // background-image: url('a.png');
+    }
+}

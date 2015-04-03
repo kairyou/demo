@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html class="index-page">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>{%=o.htmlWebpackPlugin.options.title || 'Webpack App'%}</title>
+{% for (var chunk in o.webpack.assetsByChunkName) {var css = o.webpack.assetsByChunkName[chunk][1];if (css.length > 1) { %}
+<link rel="stylesheet" href="{%=css%}">
+{% }} %}
+</head>
+<body>
+<h1>webpack demo !!</h1>
+
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- <script src="http://localhost:8080/webpack-dev-server.js"></script> -->
+<script src="{%=o.htmlWebpackPlugin.assets.common%}"></script>
+<script src="{%=o.htmlWebpackPlugin.assets.index%}"></script>
+
+<!-- {% for (var chunk in o.htmlWebpackPlugin.assets) { %}
+<script src="{%=o.htmlWebpackPlugin.assets[chunk]%}"></script>
+{% } %} -->
+</body>
+</html>

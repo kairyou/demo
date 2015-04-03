@@ -1,0 +1,22 @@
+{
+  "name": "build",
+  "version": "0.1.0",
+  "description": "webpack deps",
+  "devDependencies": {
+    "html-loader": "^0.2.3",
+    "html-webpack-plugin": "^1.1.0",
+    "raw-loader": "^0.5.1"
+  },
+  "dependencies": {
+    "autoprefixer-loader": "^1.2.0",
+    "css-loader": "^0.9.1",
+    "del": "^1.1.1",
+    "extract-text-webpack-plugin": "^0.5.0",
+    "file-loader": "^0.8.1",
+    "node-sass": "^3.0.0-pre",
+    "sass-loader": "^0.5.0",
+    "style-loader": "^0.8.3",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.7.3"
+  }
+}

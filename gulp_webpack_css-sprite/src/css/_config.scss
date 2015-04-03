@@ -1,0 +1,14 @@
+//map-get($siteColors, bgColor);
+$siteColors: (
+	background: #F5F5F5, // 页面背景
+	color: #333, // 文字颜色
+	link: #3F5995, // 链接
+	hover: #999,
+);
+
+$siteColors: map-merge($siteColors, (
+	focus: map-get($siteColors, hover),
+	active: lighten(adjust-hue(map-get($siteColors, link), 75deg), 10%),
+	visited: darken(map-get($siteColors, link), 10%),
+));
+

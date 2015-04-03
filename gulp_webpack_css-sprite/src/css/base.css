@@ -1,0 +1,5 @@
+@import url('./reset.css');
+/*@import url('./icon.css');*/
+
+/*=app common*/
+html, body{min-height:100%;padding: 0 20px;}

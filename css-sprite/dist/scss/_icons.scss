@@ -1,0 +1,46 @@
+$header-home: 0px 0px 13px 12px;
+$header-account: 0px -12px 11px 13px;
+$footer-next: 0px -25px 33px 33px;
+$footer-prev: 0px -58px 33px 33px;
+
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 3);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 4);
+}
+
+@function sprite-width($sprite) {
+  @return nth($sprite, 3);
+}
+
+@function sprite-height($sprite) {
+  @return nth($sprite, 4);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 1);
+  $sprite-offset-y: nth($sprite, 2);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite($sprite) {
+  @include sprite-position($sprite);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: block;
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+.icon {
+  background-image: url('../img/icons.png');
+}
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+  .icon {
+    background-image: url('../img/icons@2x.png');
+    background-size: 33px 91px;
+  }
+}

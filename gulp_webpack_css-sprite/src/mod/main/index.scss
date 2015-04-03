@@ -1,0 +1,20 @@
+// @import "../../css/_base";
+@import "_base";
+@import "_config";
+@import "_as-header";
+@import "_as-footer";
+
+// body{background: url(../../img/test.jpg) no-repeat 50% 50%;}
+
+h1{
+	color: map-get($siteColors, active);
+}
+.mod-main{
+	margin: 20px 0;
+	.header-home{
+		@include sprite($header-home);
+	}
+	.footer-home{
+		@include sprite($footer-home);
+	}
+}

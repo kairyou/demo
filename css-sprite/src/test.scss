@@ -1,0 +1,8 @@
+@import 'scss/_icons';
+.icon-home {
+  @include sprite($header-home);
+}
+.icon-account {
+  @include sprite($header-account);
+}
+@import 'glue-sprites/header';

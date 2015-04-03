@@ -1,0 +1,59 @@
+/* glue: 0.11.0 hash: 0b129f87a2 */
+        .sprite-header-home,
+.sprite-header-account {
+            background-image: url('header.png');
+            background-repeat: no-repeat;
+        }
+        
+        .sprite-header-home {
+            background-position: 0 0;
+            width: 9px;
+            height: 9px;
+        }
+        
+        .sprite-header-account {
+            background-position: 0 -9px;
+            width: 8px;
+            height: 9px;
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min--moz-device-pixel-ratio: 1.5), screen and (-o-min-device-pixel-ratio: 150/100), screen and (min-device-pixel-ratio: 1.5), screen and (min-resolution: 1.5dppx) {
+            .sprite-header-home,
+    .sprite-header-account {
+                background-image: url('header@1.5x.png');
+                -webkit-background-size: 9px 17px;
+                -moz-background-size: 9px 17px;
+                background-size: 9px 17px;
+            }
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 1.0), screen and (min--moz-device-pixel-ratio: 1.0), screen and (-o-min-device-pixel-ratio: 100/100), screen and (min-device-pixel-ratio: 1.0), screen and (min-resolution: 1.0dppx) {
+            .sprite-header-home,
+    .sprite-header-account {
+                background-image: url('header.png');
+                -webkit-background-size: 9px 17px;
+                -moz-background-size: 9px 17px;
+                background-size: 9px 17px;
+            }
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 2.0), screen and (min--moz-device-pixel-ratio: 2.0), screen and (-o-min-device-pixel-ratio: 200/100), screen and (min-device-pixel-ratio: 2.0), screen and (min-resolution: 2.0dppx) {
+            .sprite-header-home,
+    .sprite-header-account {
+                background-image: url('header@2x.png');
+                -webkit-background-size: 9px 17px;
+                -moz-background-size: 9px 17px;
+                background-size: 9px 17px;
+            }
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 3.0), screen and (min--moz-device-pixel-ratio: 3.0), screen and (-o-min-device-pixel-ratio: 300/100), screen and (min-device-pixel-ratio: 3.0), screen and (min-resolution: 3.0dppx) {
+            .sprite-header-home,
+    .sprite-header-account {
+                background-image: url('header@3x.png');
+                -webkit-background-size: 9px 17px;
+                -moz-background-size: 9px 17px;
+                background-size: 9px 17px;
+            }
+        }
+        

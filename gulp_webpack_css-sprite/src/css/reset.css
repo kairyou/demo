@@ -1,0 +1,9 @@
+html{
+  background:#f3f3f4;color:#333;font:12px/1.5 arial;
+}
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ol,ul,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
+html,button,input,select,textarea {font-family:"Helvetica Neue", Helvetica, Arial;}
+.r,.r:link,.r:visited{color:#F00}
+.o,.o:link,.o:visited{color:#F50}
+.b,.b:link,.b:visited{color:#04D}
+.g{color:#090}

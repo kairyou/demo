@@ -1,0 +1,59 @@
+/* glue: 0.11.0 hash: 4d543c0be0 */
+        .sprite-footer-prev,
+.sprite-footer-next {
+            background-image: url('footer.png');
+            background-repeat: no-repeat;
+        }
+        
+        .sprite-footer-prev {
+            background-position: 0 0;
+            width: 22px;
+            height: 22px;
+        }
+        
+        .sprite-footer-next {
+            background-position: -22px 0;
+            width: 22px;
+            height: 22px;
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min--moz-device-pixel-ratio: 1.5), screen and (-o-min-device-pixel-ratio: 150/100), screen and (min-device-pixel-ratio: 1.5), screen and (min-resolution: 1.5dppx) {
+            .sprite-footer-prev,
+    .sprite-footer-next {
+                background-image: url('footer@1.5x.png');
+                -webkit-background-size: 44px 22px;
+                -moz-background-size: 44px 22px;
+                background-size: 44px 22px;
+            }
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 1.0), screen and (min--moz-device-pixel-ratio: 1.0), screen and (-o-min-device-pixel-ratio: 100/100), screen and (min-device-pixel-ratio: 1.0), screen and (min-resolution: 1.0dppx) {
+            .sprite-footer-prev,
+    .sprite-footer-next {
+                background-image: url('footer.png');
+                -webkit-background-size: 44px 22px;
+                -moz-background-size: 44px 22px;
+                background-size: 44px 22px;
+            }
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 2.0), screen and (min--moz-device-pixel-ratio: 2.0), screen and (-o-min-device-pixel-ratio: 200/100), screen and (min-device-pixel-ratio: 2.0), screen and (min-resolution: 2.0dppx) {
+            .sprite-footer-prev,
+    .sprite-footer-next {
+                background-image: url('footer@2x.png');
+                -webkit-background-size: 44px 22px;
+                -moz-background-size: 44px 22px;
+                background-size: 44px 22px;
+            }
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 3.0), screen and (min--moz-device-pixel-ratio: 3.0), screen and (-o-min-device-pixel-ratio: 300/100), screen and (min-device-pixel-ratio: 3.0), screen and (min-resolution: 3.0dppx) {
+            .sprite-footer-prev,
+    .sprite-footer-next {
+                background-image: url('footer@3x.png');
+                -webkit-background-size: 44px 22px;
+                -moz-background-size: 44px 22px;
+                background-size: 44px 22px;
+            }
+        }
+        

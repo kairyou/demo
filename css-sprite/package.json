@@ -1,0 +1,9 @@
+{
+  "name": "build",
+  "version": "0.1.0",
+  "description": "webpack deps",
+  "devDependencies": {},
+  "dependencies": {
+    "css-sprite": "^0.9.8"
+  }
+}
