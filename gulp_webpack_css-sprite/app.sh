@@ -31,6 +31,7 @@ elif [[ $action = 'clean' ]]; then
 	$prefix NODE_ENV=dev gulp --cwd $CWD --gulpfil $CWD/gulpfile.js clean;
 elif [[ $action = 'install' ]]; then
 	npm install; #style-loader css-loader url-loader autoprefixer-loader sass-loader extract-text-webpack-plugin html-webpack-plugin html-loader
+elif [[ $action = 'install-g' ]]; then
 	npm install -g webpack webpack-dev-server node-sass gulp gulp-util css-sprite merge-stream gulp-if del;
 else
 	help;

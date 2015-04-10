@@ -16,21 +16,23 @@ define(['./b.js', './c.js'], function(dep1, dep2) { // AMD
 });*/
 
 
+// require.include('./c');
+// var c = require('./c.js');
 
 // async按需加载2种方式
-/*require(['./a.js'], function(module){ // AMD (推荐)
+require(['./a.js'], function(module){ // AMD (推荐)
 	module.show();
 	var c = require('./c.js').show(); //c.js会和a.js打包到一起
 });
 require.ensure([], function(require) { // CommonJs
 	require('./b.js').show(); // c.js会和b.js打包到一起
 	var c = require('./c.js').show(); // 前面已经执行过, 这里的c不会再执行(c的接口可正常使用)
-});*/
+});
 // 那么问题来了, 代码重复: a,b都含有c的代码(webpack -p模式也一样);
-// 已经被同步require过时, 重复的代码才可以自动优化掉
+// 同步require('./c.js')后, c的代码才可以自动优化掉
 
 // 异步方式可用include优化
-// require.include('./c'); // 只加载不执行(a被打包到当前js里, 但不会被执行), 和 require('./c') 的区别就是是否执行c
+// require.include('./c'); // 只加载不执行(c被打包到当前js里, 但不会被执行), 和 require('./c') 的区别就是是否执行c
 // 这样后续的异步依赖c时, 打包时就不会包含c了. 比如下面:
 	// require.ensure(['./c'], function (require) {
 	// 	var b = require('./b'); // 打包b时就不会再包含c了.
@@ -39,8 +41,7 @@ require.ensure([], function(require) { // CommonJs
 // 当模块被多次异步依赖时, 优化的效果就明显了(没有include('./a'): a会打一个包, a,b会打一个包; 使用后: 只有一个包b.js):
 	// require(['./a.js'], function(a){});
 	// require(['./a.js', './b.js'], function(a, b) {});
-// 题外话: require.ensure(['./c'], ...) 也是只加载不执行(功能不同于include, 而且是异步方式);
-
+// 题外话: require.ensure(['./c'], ...) 也是只加载不执行(功能不同于include, 而且是异步加载, 参数2里require('./c.js')才会执行c);
 
 // css怎么用:
 /*
@@ -111,11 +112,11 @@ css 里用 @import url('./ui.css'), 会把ui.css内容加到当前文件的最�
 	console.log(module, window.t);
 });*/
 
-require(['./jquery.dialog.js'], function(module){
+/*require(['./jquery.dialog.js'], function(module){
 	console.log(module);
 	console.log($.dialog);
 	$.dialog({msg: 'required jquery.dialog'});
-});
+});*/
 
 /*
 

@@ -1,0 +1,513 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1024">
+<title>impress.js</title>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet">
+<style type="text/css">html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0}
+body{font-family:'PT Sans',sans-serif;min-height:740px;background:#d7d7d7;background:-webkit-gradient(radial,50% 50%,0,50% 50%,500,from(#f0f0f0),to(#bebebe));background:-webkit-radial-gradient(#f0f0f0,#bebebe);background:-moz-radial-gradient(#f0f0f0,#bebebe);background:-ms-radial-gradient(#f0f0f0,#bebebe);background:-o-radial-gradient(#f0f0f0,#bebebe);background:radial-gradient(#f0f0f0,#bebebe)}
+b,strong{font-weight:bold}
+i,em{font-style:italic}
+a{color:inherit;text-decoration:none;padding:0 .1em;background:rgba(255,255,255,0.5);text-shadow:-1px -1px 2px rgba(100,100,100,0.9);border-radius:.2em;-webkit-transition:.5s;-moz-transition:.5s;-ms-transition:.5s;-o-transition:.5s;transition:.5s}
+a:hover,a:focus{background:rgba(255,255,255,1);text-shadow:-1px -1px 2px rgba(100,100,100,0.5)}
+.fallback-message{font-family:sans-serif;line-height:1.3;width:780px;padding:10px 10px 0;margin:20px auto;border:1px solid #e4c652;border-radius:10px;background:#eedc94}
+.fallback-message p{margin-bottom:10px}
+.impress-supported .fallback-message{display:none}
+.step{position:relative;width:900px;padding:40px;margin:20px auto;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;font-family:'PT Serif',georgia,serif;font-size:16px;line-height:1.5}
+.impress-enabled .step{margin:0;opacity:.3;-webkit-transition:opacity 1s;-moz-transition:opacity 1s;-ms-transition:opacity 1s;-o-transition:opacity 1s;transition:opacity 1s}
+.impress-enabled .step.active{opacity:1}
+.slide{display:block;width:900px;height:700px;padding:40px 60px;background-color:white;border:1px solid rgba(0,0,0,.3);border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.1);color:#666;text-shadow:0 2px 2px rgba(0,0,0,.1);font-family:'Open Sans',Arial,sans-serif;font-size:30px;line-height:36px;letter-spacing:-1px}
+.slide q{display:block;font-size:50px;line-height:72px;margin-top:100px}
+.slide q strong{white-space:nowrap}
+#title{padding:0}
+#title .try{font-size:64px;position:absolute;top:-0.5em;left:1.5em;-webkit-transform:translateZ(20px);-moz-transform:translateZ(20px);-ms-transform:translateZ(20px);-o-transform:translateZ(20px);transform:translateZ(20px)}
+#title h1{font-size:190px;-webkit-transform:translateZ(50px);-moz-transform:translateZ(50px);-ms-transform:translateZ(50px);-o-transform:translateZ(50px);transform:translateZ(50px)}
+#title .footnote{font-size:32px}
+#big{width:600px;text-align:center;font-size:60px;line-height:1}
+#big b{display:block;font-size:250px;line-height:250px}
+#big .thoughts{font-size:90px;line-height:150px}
+#tiny{width:500px;text-align:center}
+#ing{width:500px}
+#ing b{display:inline-block;-webkit-transition:.5s;-moz-transition:.5s;-ms-transition:.5s;-o-transition:.5s;transition:.5s}
+#ing.present .positioning{-webkit-transform:translateY(-10px);-moz-transform:translateY(-10px);-ms-transform:translateY(-10px);-o-transform:translateY(-10px);transform:translateY(-10px)}
+#ing.present .rotating{-webkit-transform:rotate(-10deg);-moz-transform:rotate(-10deg);-ms-transform:rotate(-10deg);-o-transform:rotate(-10deg);transform:rotate(-10deg);-webkit-transition-delay:.25s;-moz-transition-delay:.25s;-ms-transition-delay:.25s;-o-transition-delay:.25s;transition-delay:.25s}
+#ing.present .scaling{-webkit-transform:scale(0.7);-moz-transform:scale(0.7);-ms-transform:scale(0.7);-o-transform:scale(0.7);transform:scale(0.7);-webkit-transition-delay:.5s;-moz-transition-delay:.5s;-ms-transition-delay:.5s;-o-transition-delay:.5s;transition-delay:.5s}
+#imagination{width:600px}
+#imagination .imagination{font-size:78px}
+#source{width:700px;padding-bottom:300px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAMAAACwUBm+AAAAAXNSR0IArs4c6QAAAKtQTFRFsAAAvbWSLUUrLEQqY1s8UYJMqJ1vNTEgOiIdIzYhjIFVLhsXZ6lgSEIsP2U8JhcCVzMsSXZEgXdOO145XJdWOl03LzAYMk4vSXNExr+hwcuxRTs1Qmk+RW9Am49eFRANQz4pUoNMQWc+OSMDTz0wLBsCNVMxa2NBOyUDUoNNSnlEWo9VRGxAVzYFl6tXCggHbLNmMUIcHhwTXkk5f3VNRT8wUT8xAAAACQocRBWFFwAAAAF0Uk5TAEDm2GYAAAPCSURBVHja7d3JctNAFIZRMwRCCGEmzPM8z/D+T8bu/ptbXXJFdij5fMt2Wuo+2UgqxVmtttq5WVotLzBgwIABAwYMGDCn0qVqbo69psPqVpWx+1XG5iaavF8wYMCAAQMGDBgwi4DJ6Y6qkxB1HNlcN3a92gbR5P2CAQMGDBgwYMCAWSxMlrU+UY5yu2l9okfV4bAxUVbf7TJnAwMGDBgwYMCAAbMLMHeqbGR82Zy+VR1Ht81nVca6R+UdTLaU24Ruzd3qM/e4yjnAgAEDBgwYMGDA7AJMd1l/3NRdVGcj3eX/2WEhCmDGxnM7yqygu8XIPjJj8iN/MGDAgAEDBgwYMAuDGb8q0RGlLCHLv1t9qDKWn3vdNHVuEI6HPaxO9Jo3GDBgwIABAwYMmIXBdC9ShGgMk+XnkXUeuGcsP/e1+lhNnZsL/G5Vs3OAAQMGDBgwYMCAWSxMR3SzOmraG5atdy9wZKzb+vg16qyqe2FltbnAgAEDBgwYMGDALAxmTJSuN3WA76rnVca6GTnemGN1WoEBAwYMGDBgwIBZGMxUomy4+xO899V4LAg5Xnc2MGDAgAEDBgwYMGA218Wq+2K1LDqvY9xZu8zN8fICdM6btYABAwYMGDBgwIABMzfH0+pGU5afze2tXebmeAfVz+p8BQYMGDBgwIABAwbMPBzZ+oWmfJrln1273FhkbHzee9WWbw7AgAEDBgwYMGDALAKm43hcdctKgblcPamOhuXnXlY5Xs6bsW4FGyQCAwYMGDBgwIABswiYMceZKgvMo+h8mrHLTdn676rj+FEFoTtHd8MwOxEYMGDAgAEDBgyYRcBM5UhXqiymW3R3c9ARhWO/OmjqfjVZy+xEYMCAAQMGDBgwYBYG073OnCV0RFNhMhaOa9WfKmOB6XjHMN1tQmaAAQMGDBgwYMCA2VWY7vXjz1U4croAzgPztwIDBgwYMGDAgAEDZhswh035NBw59Dww3RgYMGDAgAEDBgwYMJuD6f4tXT7NUqfCdBvZLkxXdgQGDBgwYMCAAQNmt2DGj8WzwAfV/w7T/aq7mxwwYMCAAQMGDBgwuwqTOo7uTwTngflSzQ3TdaJvAwEDBgwYMGDAgAED5gSvgbyo5oHZ4Pc+gwEDBgwYMGDAgAEzhOm+5G0qTGaAAQMGDBgwYMCAAXNaMOcnls3tNwWm+zRzp54NDBgwYMCAAQMGDJh5YNL36k1TLuGvVq+qnKMbS5n7tulT9asCAwYMGDBgwIABA2ZumKuztLnjgQEDBgwYMGDAgNl5mH/4/ltKA6vBNAAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat}
+#source q{font-size:60px}
+#its-in-3d p{-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;-ms-transform-style:preserve-3d;-o-transform-style:preserve-3d;transform-style:preserve-3d}
+#its-in-3d span,#its-in-3d b{display:inline-block;-webkit-transform:translateZ(40px);-moz-transform:translateZ(40px);-ms-transform:translateZ(40px);-o-transform:translateZ(40px);transform:translateZ(40px);-webkit-transition:.5s;-moz-transition:.5s;-ms-transition:.5s;-o-transition:.5s;transition:.5s}
+#its-in-3d .have{-webkit-transform:translateZ(-40px);-moz-transform:translateZ(-40px);-ms-transform:translateZ(-40px);-o-transform:translateZ(-40px);transform:translateZ(-40px)}
+#its-in-3d .you{-webkit-transform:translateZ(20px);-moz-transform:translateZ(20px);-ms-transform:translateZ(20px);-o-transform:translateZ(20px);transform:translateZ(20px)}
+#its-in-3d .noticed{-webkit-transform:translateZ(-40px);-moz-transform:translateZ(-40px);-ms-transform:translateZ(-40px);-o-transform:translateZ(-40px);transform:translateZ(-40px)}
+#its-in-3d .its{-webkit-transform:translateZ(60px);-moz-transform:translateZ(60px);-ms-transform:translateZ(60px);-o-transform:translateZ(60px);transform:translateZ(60px)}
+#its-in-3d .in{-webkit-transform:translateZ(-10px);-moz-transform:translateZ(-10px);-ms-transform:translateZ(-10px);-o-transform:translateZ(-10px);transform:translateZ(-10px)}
+#its-in-3d .footnote{font-size:32px;-webkit-transform:translateZ(-10px);-moz-transform:translateZ(-10px);-ms-transform:translateZ(-10px);-o-transform:translateZ(-10px);transform:translateZ(-10px)}
+#its-in-3d.present span,#its-in-3d.present b{-webkit-transform:translateZ(0px);-moz-transform:translateZ(0px);-ms-transform:translateZ(0px);-o-transform:translateZ(0px);transform:translateZ(0px)}
+#overview{display:none}
+.impress-on-overview .step{opacity:1;cursor:pointer}
+.hint{display:none;position:fixed;left:0;right:0;bottom:200px;background:rgba(0,0,0,0.5);color:#EEE;text-align:center;font-size:50px;padding:20px;z-index:100;opacity:0;-webkit-transform:translateY(400px);-moz-transform:translateY(400px);-ms-transform:translateY(400px);-o-transform:translateY(400px);transform:translateY(400px);-webkit-transition:opacity 1s,-webkit-transform .5s 1s;-moz-transition:opacity 1s,-moz-transform .5s 1s;-ms-transition:opacity 1s,-ms-transform .5s 1s;-o-transition:opacity 1s,-o-transform .5s 1s;transition:opacity 1s,transform .5s 1s}
+.impress-enabled .hint{display:block}
+.impress-on-bored .hint{opacity:1;-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-ms-transform:translateY(0px);-o-transform:translateY(0px);transform:translateY(0px);-webkit-transition:opacity 1s 5s,-webkit-transform .5s 4.5s;-moz-transition:opacity 1s 5s,-moz-transform .5s 4.5s;-ms-transition:opacity 1s 5s,-ms-transform .5s 4.5s;-o-transition:opacity 1s 5s,-o-transform .5s 4.5s;transition:opacity 1s 5s,transform .5s 4.5s}
+.impress-enabled{pointer-events:none}
+.impress-enabled #impress{pointer-events:auto}
+*{font-size:14px}
+h1{font-size:250%;text-align:center}
+h2{font-size:180%}
+ul li{list-style:decimal;list-style-position:inside}
+ul>li>ul>li{list-style:lower-alpha;margin-left:2em}
+pre {background-color:#f8f8f8;padding:6px 10px;border-radius:3px;}
+code {background:#f8f8f8;}</style>
+<style>
+*{font-size:14px}.step{word-break:break-all;word-wrap:break-word;font-size:16px}
+/* https://github.com/chriskempson/tomorrow-theme */
+.prettyprint{background:#2d2d2d;font-family:Menlo,'Bitstream Vera Sans Mono','DejaVu Sans Mono',Monaco,Consolas,monospace;font-size:12px;line-height:1.5;border:1px solid #ccc;padding:10px}.pln{color:#ccc}@media screen{.str{color:#9c9}.kwd{color:#c9c}.com{color:#999}.typ{color:#69c}.lit{color:#f99157}.clo,.opn,.pun{color:#ccc}.tag{color:#f2777a}.atn{color:#f99157}.atv{color:#6cc}.dec{color:#f99157}.var{color:#f2777a}.fun{color:#69c}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:700}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:700}.lit{color:#044}.clo,.opn,.pun{color:#440}.tag{color:#006;font-weight:700}.atn{color:#404}.atv{color:#060}}ol.linenums{margin-top:0;margin-bottom:0}
+code{padding: 0.15em 0.5em;font-size: 85%;background-color: rgba(114, 139, 173, 0.3);border-radius: 3px;}
+pre{padding:0;}pre code{display:block;}
+blockquote, q{background-color: rgba(255, 255, 255, 0.3);border-left: 2px solid #008E59;color: #657b83;padding: 10px 16px;}
+a{background:none;text-shadow: -1px -1px 1px rgba(100,100,100,0.5);}
+</style>
+</head>
+<body>
+    <div id="impress"><div class="step" data-x="1500" data-y="1000" data-rotate="90"><!-- x=1500 y=1000 rotate=90 -->
+<h1 id="webpack-">Webpack +</h1>
+<p><br><br></p>
+<p align="center">
+Webpack 使用介绍,  以及与gulp的搭配(顺带css-sprite)
+</p>
+
+
+</div><div class="step" data-x="0" data-y="0" data-scale="0.5"><!-- x=0 y=0 scale=0.5 -->
+<h2 id="webpack-">Webpack简介</h2>
+<p><br><br></p>
+<p>编译好资源给浏览器使用, 特点:
+<br><br></p>
+<ul>
+<li>模块打包</li>
+<li>无论CommonJs还是AMD都支持</li>
+<li>支持模块按需加载</li>
+<li>任何用到的资源都可作为模块被require(js/css/图片/字体/html...)</li>
+<li>预编译(sass/less/coffeescript/图片转base64...)</li>
+<li>优化: 压缩/文件缓存</li>
+<li>切分并提取公共代码</li>
+<li>Shim支持</li>
+<li>source-map支持</li>
+</ul>
+<p><br><br>
+Bowserify,RequireJS 应该可以被完全取代, 很多Grunt 跟 Gulp的功能也能做到</p>
+</div><div class="step" data-x="-1500" data-y="0" data-scale="0.5"><!-- x=-1500 y=0 scale=0.5 -->
+<h2 id="-">基本用法</h2>
+<p><br><br></p>
+<pre><code class="lang-js">//webpack.config.js
+module.exports = {
+    context: __dirname + &#39;/src&#39;,
+    entry: { //打包成2个文件index.js,about.js
+        index: [&#39;./a.js&#39;, &#39;./a.css&#39;, &#39;./b.js&#39;, &#39;./b.css&#39;], //css和js打包到一起, 用&lt;style&gt;添加到页面
+        about: [&#39;./a.js&#39;, &#39;./a.css&#39;, &#39;./c.js&#39;, &#39;./c.css&#39;],
+    },
+    output: {
+        path: &#39;./build&#39;,
+        publicPath: &#39;build/&#39;, // 生成文件内用到的URL路径, 比如背景图等(可以设成http的地址)
+        filename: &#39;[name].js&#39; // index.js, about.js
+    },
+    module: {
+        loaders: [
+            { test: /\.css$/, loader: &#39;style-loader!css-loader&#39; }, // 针对.css文件用2个加载器预处理
+        ]
+    },
+};
+</code></pre>
+<p><br><br>
+命令行执行: webpack 或者 webpack --config webpack.config.js<br>参见:  <a href="https://github.com/petehunt/webpack-howto">https://github.com/petehunt/webpack-howto</a></p>
+</div><div class="step" data-x="-500" data-y="500" data-z="500"><!-- x=-500 y=500 z=500 -->
+<h2 id="-">模块化开发</h2>
+<p><br><br></p>
+<pre><code class="lang-js">// a.js
+function show() { // 私有的
+    console.log(&#39;a.js&#39;, &#39;show&#39;);
+};
+module.exports = { //CommonJS方式
+    show: function(){ //外部接口
+        show();
+    }
+}
+</code></pre>
+<p><br></p>
+<pre><code class="lang-js">// b.js
+var a = require(&#39;./a&#39;);
+a.show(); // 调用a提供的接口
+</code></pre>
+<p><br><br>
+即使没用过 RequireJS, Node.js也很容易理解<br>不再需要RequireJS或我们的Hub等等来组织模块(也降低了学习成本),<br>也不再需要去写define(...)之类的把模块包起来,<br>var fn, function fn(){}随便用, 不必担心和其他模块冲突, 因为webpack会用代码把模块包起来;</p>
+</div><div class="step" data-x="1500" data-y="3000" data-z="-900"><!-- x=1500 y=3000 z=-900 -->
+<h2 id="-">模块加载</h2>
+<p><br><br></p>
+<pre><code class="lang-js">// sync加载2种方式
+var a = require(&#39;./a.js&#39;); // CommonJs (推荐)
+//a.show();
+
+define([&#39;./b.js&#39;, &#39;./c.js&#39;], function(dep1, dep2) { // AMD
+    dep2.show();
+});
+</code></pre>
+<p><br></p>
+<pre><code class="lang-js">// async按需加载2种方式
+require([&#39;./a.js&#39;], function(module){ // AMD (推荐)
+    module.show();
+    var c = require(&#39;./c.js&#39;).show(); //c.js会和a.js打包到一起
+});
+
+require.ensure([], function(require) { // CommonJs
+    require(&#39;./b.js&#39;).show(); // c.js会和b.js打包到一起
+    var c = require(&#39;./c.js&#39;).show(); // 前面已经执行过, 这里的c不会再执行(c的接口可正常使用)
+});
+</code></pre>
+<p><b style="color:#068b6c">那么问题来了, 代码重复: a,b都含有c的代码(webpack -p模式也一样);</b>  </p>
+<p><font color="#666">* 同步require(&#39;./c.js&#39;)后, c的代码才可以自动优化掉</font><br><br>
+异步方式可用include优化(webpack扩展的方法):</p>
+<pre><code class="lang-js">require.include(&#39;./c&#39;); //只加载不执行(c被打包到当前js里, 但不会被执行), 和 require(&#39;./c&#39;) 的区别就是是否执行c
+</code></pre>
+<p>这样后续的异步依赖c时, 打包时就不会包含c了 (当模块被多次异步依赖时, 优化的效果就明显了)<br><br><br>
+题外话: require.ensure([&#39;./c&#39;], ...) 也是只加载不执行(但功能不同, 异步加载, fn里再require()才执行);</p>
+</div><div class="step" data-x="2500" data-y="1000" data-rotate="90"><!-- x=2500 y=1000 rotate=90 -->
+<h2 id="scss-less-css-">scss/less/css的使用</h2>
+<p><br><br></p>
+<p>方式1: 直接js内require:</p>
+<pre><code class="lang-js">require(&#39;./a.scss&#39;); // 推荐, 模块依赖清晰
+</code></pre>
+<p><br>
+方式2: webpack.config.js的entry里添加, 比如: </p>
+<pre><code class="lang-js"> entry: {index: [&#39;./index.js&#39;, &#39;./index.scss&#39;]}
+</code></pre>
+<p>Ps: 默认会把css/js打包到一起, 再通过js添加style到页面;<br>css 里用 @import url(&#39;./ui.css&#39;), 会把ui.css内容加到当前文件的最上面 (优化掉@import);<br><span style="color:#666">* 配合extract-text-webpack-plugin, 可以把css独立打包(和js一样也会自动合并多个);</span>
+<br><br> </p>
+<p>图片的处理, webpack.config.js的loaders内设定: </p>
+<pre><code class="lang-js">{test: /\.(png|jpg|gif)$/, loader: &#39;url-loader?limit=8192&#39;}, // &lt;=8k的图片使用base64内联, 其他的继续用图片
+{test: /\.(png|jpg|gif)$/, loader: &#39;file-loader&#39;}, // 图片独立(兼容&lt;IE8的browser)
+</code></pre>
+<p>图片还可以再优化:  github.com/tcoopman/image-webpack-loader
+<br><br></p>
+<font color="#666">* Webpack里一切都可作为模块加载</font>
+
+</div><div class="step" data-x="2500" data-y="-1000" data-scale="0.5"><!-- x=2500 y=-1000 scale=0.5 -->
+<h2 id="-">样式优化</h2>
+<p><br></p>
+<p>还记得大明湖畔的<code>@mixin</code>? 比如方法border-radius:</p>
+<pre><code class="lang-css">//_base.css
+@mixin border-radius($radius: 5px) {
+    -webkit-border-radius: $radius;-moz-border-radius: $radius;-khtml-border-radius: $radius;border-radius: $radius;
+}
+//main.scss
+.test{@include border-radius(3px);} // 使用@include 简化开发
+</code></pre>
+<p><br>
+<b style="color:#068b6c">除去优点, 那么问题又来了: </b></p>
+<ul>
+<li>不太熟悉的人怎么用? 可能要再翻看下API(可能有N个@mixin方法, 更悲剧的可能有: borderRadius/border_radius...)</li>
+<li>border-radius已经支持的很好, 不再需要写-webkit-border-radius/-moz-border-radius了</li>
+</ul>
+<p><br>
+使用autoprefixer可大量减少mixin的使用, webpack.config.js的module.loaders内设定: </p>
+<pre><code class="lang-js">{test: /\.css$/, loader: &#39;style-loader!css-loader!autoprefixer-loader?{cascade:false,browsers:[&quot;last 3 version&quot;, &quot;&gt; 1%&quot;, &quot;ie &gt; 7&quot;]}&#39;},
+{test: /\.scss$/, loader: ExtractTextPlugin.extract(&#39;style-loader&#39;, &#39;css-loader!autoprefixer-loader!sass-loader&#39;)}
+{test: /\.less$/, loader: ExtractTextPlugin.extract(&#39;style-loader&#39;, &#39;css-loader!autoprefixer-loader!less-loader&#39;)}
+</code></pre>
+<p>这样code只需要写: border-radius: 3px; <i style="color:#666">// 只需要写标准的就好</i>
+<br><br></p>
+<p>config的plugins:[]内, 增加: <code>new ExtractTextPlugin(&#39;[name].css&#39;)</code>, 再加上loader内的规则, 就可以让css独立了  </p>
+<p><font color="#666">* 异步加载的模块内用到的css不会独立</font>
+<br></p>
+<p>注意事项: </p>
+<blockquote>
+<p>www.npmjs.com/package/autoprefixer#faq<br>github.com/postcss/autoprefixer/wiki/support-list</p>
+</blockquote>
+</div><div class="step" data-x="2500" data-y="-2500" data-z="-666"><!-- x=2500 y=-2500 z=-666 -->
+<pre><code class="lang-css">.swiper-wrapper { /*使用前*/
+    position:relative;width:100%;
+    -webkit-transition-property:-webkit-transform, left, top;
+    -webkit-transition-duration:0s;
+    -webkit-transform:translate3d(0px,0,0);
+    -webkit-transition-timing-function:ease;
+
+    -moz-transition-property:-moz-transform, left, top;
+    -moz-transition-duration:0s;
+    -moz-transform:translate3d(0px,0,0);
+    -moz-transition-timing-function:ease;
+
+    -o-transition-property:-o-transform, left, top;
+    -o-transition-duration:0s;
+    -o-transform:translate3d(0px,0,0);
+    -o-transition-timing-function:ease;
+    -o-transform:translate(0px,0px);
+
+    -ms-transition-property:-ms-transform, left, top;
+    -ms-transition-duration:0s;
+    -ms-transform:translate3d(0px,0,0);
+    -ms-transition-timing-function:ease;
+
+    transition-property:transform, left, top;
+    transition-duration:0s;
+    transition-timing-function:ease;
+
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+</code></pre>
+<pre><code class="lang-css">.swiper-wrapper { /*使用后*/
+    position:relative;width:100%;
+    transition-property:transform, left, top;
+    transition-duration:0s;
+    transform:translate3d(0px,0,0);
+    transition-timing-function:ease;
+    box-sizing: content-box;
+}
+</code></pre>
+</div><div class="step" data-x="2500" data-y="500" data-z="1700" data-rotate="90"><!-- x=2500 y=500 z=1700 rotate=90 -->
+<h2 id="-">缓存优化 + 自动生成公共文件</h2>
+<p><br>
+文件名带hash, 多版本并存, 未变动的(缓存过)不需要重新下载. </p>
+<p>可把当前打包的hash map用json储存, 给页面调用.<br><br><br></p>
+<pre><code class="lang-js">// webpack.config.js内设定
+output: {
+    path: &#39;./dist&#39;, // 编译后文件存放的路径(可用[hash])
+    filename: &#39;[name].[chunkhash].js&#39;, // 文件名规则 for entry
+    chunkFilename: &#39;[id].[chunkhash].js&#39;, // 文件名规则 for 块文件(比如异步加载的文件)
+},
+plugins: [
+    function() { // 文件名带[hash]的时候, 必须依赖stats
+        this.plugin(&#39;done&#39;, function(stats) { // stats.json的assetsByChunkName, 包含了build后的文件列表
+            var datas = stats.toJson(), stats;
+            stats = &#39;./stats.json&#39;; // path.join(__dirname, &#39;..&#39;, &#39;stats.json&#39;),
+            require(&#39;fs&#39;).writeFileSync(stats, JSON.stringify(datas.assetsByChunkName));
+        });
+    },
+    new ExtractTextPlugin(&#39;[name].[contenthash:20].css&#39;), // 文件名规则 for css, 限定hash长度20
+    // 生成公共文件(参数1是公共chunk name(css用), 参数2是给js用)
+    new webpack.optimize.CommonsChunkPlugin(&#39;common&#39;, &#39;common.[chunkhash].js&#39;), 
+]
+</code></pre>
+<p>不需要上个版本的文件时, 可以根据上个版本的json取出文件列表直接删掉(对比目前的去重).</p>
+</div><div class="step" data-x="3500" data-y="1500" data-scale="0.1"><!-- x=3500 y=1500 scale=0.1 -->
+<h2 id="-">打包组件</h2>
+<p><br></p>
+<p>问题: 一个组件lightbox, 文件有 l.js, l.css, l.png...., 在页面要怎样使用?</p>
+<p><br></p>
+<ul>
+<li>css和js分别加到header和footer</li>
+<li>使用requirejs等加载器加载js和css(需要额外插件)</li>
+</ul>
+<font color="#666">方式1: 不能按需加载; 方式2: 必须依赖加载器,  增加css/js要在调用的地方调整</font>
+
+<p><br>
+Webpack, 所有js/css/图片都可以打包成一个文件来减少请求(不考虑&lt;IE8)</p>
+<ul>
+<li>可以单独写一个webpack.lightbox.js 来打包</li>
+<li>直接传参数给webpack(执行命令的目录不能有webpack.config.js):<pre><code>webpack ./l.js ./lightbox.pkg.js --module-bind &#39;css=style!css&#39; --module-bind &#39;png=url-loader?limit=8192&#39; --output-library-target &#39;umd&#39;
+// 如果不考虑base64, 可以直接用file-lorder代替url-loader(图片独立)
+// libraryTarget是必须的. 否则被包起来后, 组件的方法不能被调用. 除非变量定义成 window.xxx;
+// * umd(同时支持被amd/commonjs方式引用)
+</code></pre></li>
+</ul>
+<p><br>
+稍有不便:<br>打包好的组件(有独立的图片的情况), 被require后, 再打包时, 不会把相关的图片转移到build目录(没有被当做模块)</p>
+<p><br>
+解决(根据使用场景): </p>
+<ul>
+<li>打包的时强制用base64</li>
+<li>打包设定成css文件独立</li>
+<li>直接require源码(用到的时候才自动打包)</li>
+</ul>
+</div><div class="step" data-x="4500" data-y="1500" data-scale="0.1"><!-- x=4500 y=1500 scale=0.1 -->
+<h2 id="-global-debug">定义global变量给模块debug</h2>
+<p><br><br></p>
+<pre><code class="lang-js">// webpack.config.js内设定
+var env = process.env.NODE_ENV,
+    isProduction = &#39;production&#39; == env,
+    isDev = &#39;development&#39; == env;
+...
+plugins: [
+    new webpack.DefinePlugin({ // 可以定义一些公共变量在代码里使用
+        __DEBUG__: isProduction ? false : true,
+        __DEV__: isDev,
+    }),
+]
+// 命令行执行: NODE_ENV=development webpack
+
+// main.js
+if (__DEBUG__) { // 这段代码 __DEBUG__为false时(NODE_ENV=production)会自动移除
+    console.log(&#39;debug&#39;);
+}
+</code></pre>
+</div><div class="step" data-x="5500" data-y="1500" data-scale="0.1"><!-- x=5500 y=1500 scale=0.1 -->
+<h2 id="source-map">source-map</h2>
+<p><br></p>
+<pre><code class="lang-js">// webpack.config.js内设定
+devtool: isProduction ? null : &#39;inline-source-map&#39;, // inline-source-map 不额外生成.map文件
+// module: {
+loaders: [
+{
+  test: /\.css$/, loader: ExtractTextPlugin.extract(&#39;style-loader&#39;, &#39;css-loader?sourceMap!autoprefixer-loader?{cascade:false,browsers:[&quot;last 3 version&quot;, &quot;&gt; 1%&quot;, &quot;ie &gt; 7&quot;]}&#39;)
+},{
+  test: /\.scss$/, loader: ExtractTextPlugin.extract(&#39;style-loader&#39;, &#39;css-loader?sourceMap!autoprefixer-loader?{browsers:[&quot;last 3 version&quot;, &quot;&gt; 1%&quot;, &quot;ie &gt; 7&quot;]}&#39;
+  + &#39;!sass-loader&#39; + &#39;?&#39; + &#39;includePaths[]=&#39; + &#39;./src/scss&#39;
+   + &#39;&amp;&#39; + &#39;includePaths[]=&#39; + &#39;./src/css&#39; + &#39;&amp;sourceMap&amp;sourceMapContents&#39;)
+},
+]
+
+
+// Assertion failed: (handle-&gt;flags &amp; UV_CLOSING), function uv__finish_close, file ../deps/uv/src/unix/core.c, line 209
+// 多个模块有 `@import &quot;xxx.scss&quot;;` 时经常遇到, sass-loader@0.5.0 - sass-loader@1.0.0 会安装node-sass@3.0.0-pre 会有这个问题)
+// npm un sass-loader node-sass --save &amp;&amp; cnpm i sass-loader@0.4.2 --save
+</code></pre>
+</div><div class="step" data-x="6500" data-y="1500" data-scale="0.1"><!-- x=6500 y=1500 scale=0.1 -->
+<h2 id="shim-">Shim支持</h2>
+<p><br></p>
+<p><i style="color:#666">shim - 让不兼容当前环境的API可用, 这里就是让非AMD或CJS的API可被使用</p>
+<p>github.com/webpack/docs/wiki/shimming-modules 有很多方式可以实现, 作用主要是模块变量的导入/导出</i>
+<br><br></p>
+<p>3种常用的:</p>
+<pre><code class="lang-js">// imports: 让dialog.js里的$$可用 (依赖webpack.config.js定义的abc)
+require([&#39;imports?$$=abc!./jquery.dialog.js&#39;]);
+
+// exports: 导出dialog.js的变量(代码后面加上了: module.exports = t)
+require([&#39;exports?abc!./jquery.dialog.js&#39;], function(module){ 
+    console.log(module, window.abc);
+});
+
+// expose: 导出dialog.js的变量为全局变量
+require([&#39;expose?abc!./jquery.dialog.js&#39;], function(module){
+    console.log(module, window.abc);
+});
+</code></pre>
+<p><br></p>
+<p>可能会被拿来比较的2种方式:</p>
+<pre><code class="lang-js">externals: { // require这些不需要再编译(作为全局变量使用) 适合页面已经引入了JS
+    jquery: &#39;jQuery&#39;,
+},
+
+plugins: [
+    new webpack.ProvidePlugin({ // 让变量xx直接在模块内可用 (意义不太大)
+        jquery: &#39;./jquery.min.js&#39; // 会把文件内容插入require(&#39;jquery&#39;)的模块
+    }),
+]
+</code></pre>
+</div><div class="step" data-x="7500" data-y="1500" data-scale="0.1"><!-- x=7500 y=1500 scale=0.1 -->
+<h2 id="webpack-dev-server">webpack-dev-server</h2>
+<p><br></p>
+<pre><code>npm install -g webpack-dev-server # 安装
+</code></pre><p>本地创建 localhost:8080/ 调试代码, 代码变动会自动reload. 主要是针对静态页(创建HTML)调试.
+<br><br></p>
+<p>使用:</p>
+<pre><code>webpack-dev-server --config webpack.cfg.js --hot --content-base build/
+# 文件在内存中(并没有在build目录生成)
+</code></pre><p>前提: entry 里面要加上<code>&#39;webpack/hot/dev-server&#39;</code>, 比如: <code>index: [&#39;webpack/hot/dev-server&#39;, &#39;./index.js&#39;]</code></p>
+<p><br>
+修改资源后, <code>http://localhost:8080/webpack-dev-server/</code> 就可以自动reload了  </p>
+<p><font color="#666">* localhost:8080/ 如果HTML加上<code>&lt;script src=&quot;http://localhost:8080/webpack-dev-server.js&quot;&gt;&lt;/script&gt;</code> 也可以自动reload</font>
+<br><br></p>
+<p>带[hash]文件名的资源测试环境怎么引用?</p>
+<pre><code class="lang-js">// 使用: html-webpack-plugin
+new HtmlWebpackPlugin({
+   test: true, // 传递变量给模板使用
+   filename: &#39;index.html&#39;, //相对 output.path目录
+   template: &#39;src/tpl/index.html&#39;, //相对config目录(根据模板生成HTML)
+   // * @1.1.0还不支持模板里require, 所以临时只能在js里面插入HTML;
+  })
+// tpl/index.html:
+// {%=o.htmlWebpackPlugin.assets.XXX%} - XXX指打好的包(entry里定义的)
+// html就可以引入名称随机的资源了
+</code></pre>
+<p><br></p>
+<p><a href="http://webpack.github.io/docs/webpack-dev-server.html">http://webpack.github.io/docs/webpack-dev-server.html</a></p>
+</div><div class="step" data-x="8500" data-y="1500" data-scale="0.1"><!-- x=8500 y=1500 scale=0.1 -->
+<h2 id="-gulp-css-sprite">搭配 gulp + css-sprite</h2>
+<p><br></p>
+<p>搭配gulp/grunt:  </p>
+<font color="#666"> github.com/webpack/webpack-with-common-libs</font><br>适合: 复杂的项目, 有多个task, 或有多个 webpack build等
+<br><br>
+
+搭配css-sprite:
+<font color="#666"> github.com/aslansky/css-sprite, 比Ruby的Compass Css Sprite性能好太多了~</font>
+
+<ul>
+<li>支持retina(ratios:1,2)</li>
+<li>图片可选base64输出</li>
+<li>支持less/scss/stylus</li>
+</ul>
+<p><br></p>
+<p>使用方式:</p>
+<pre><code>@import &#39;scss/_icons&#39;;
+.icon-home {@include sprite($header-home);} //header-home是图片名称
+</code></pre><p><br></p>
+<p>例子可以看: <code>github.com/kairyou/demo/tree/master/gulp_webpack_css-sprite</code></p>
+</div><div class="step" data-x="9500" data-y="1500" data-scale="0.1"><!-- x=9500 y=1500 scale=0.1 -->
+<h2 id="more">more</h2>
+<p><br><br></p>
+<ul>
+<li>依赖可视化: <a href="http://webpack.github.io/analyse">http://webpack.github.io/analyse</a></li>
+<li>调试React: <a href="http://gaearon.github.io/react-hot-loader/">http://gaearon.github.io/react-hot-loader/</a></li>
+<li>...
+<br><br></li>
+</ul>
+<p>坑?</p>
+<ul>
+<li>一些插件不是太完善, 比如前面说的:sass-loader的bug</li>
+<li>html-webpack-plugin用起来还不是很爽, 模板不能require模板 (最后采用了js去append的方式).</li>
+<li>css-sprite(和webpack无关), &nbsp;同时创建多个sprite时也要注意, 图片名称不能重复</li>
+<li>...忘记了</li>
+</ul>
+<p><br></p>
+<p><span style="color:#666">* 所以必须统一控制好npm package的版本</span></p>
+</div><div class="step" data-x="9500" data-y="1500" data-z="500" data-rotate="90"><!-- x=9500 y=1500 z=500 rotate=90 -->
+<h2 id="questions-">Questions?</h2>
+</div></div>
+    <script>/**
+ * impress.js
+ *
+ * impress.js is a presentation tool based on the power of CSS3 transforms and transitions
+ * in modern browsers and inspired by the idea behind prezi.com.
+ *
+ *
+ * Copyright 2011-2012 Bartek Szopka (@bartaz)
+ *
+ * Released under the MIT and GPL Licenses.
+ *
+ * ------------------------------------------------
+ *  author:  Bartek Szopka
+ *  version: 0.5.3
+ *  url:     http://bartaz.github.com/impress.js/
+ *  source:  http://github.com/bartaz/impress.js/
+ */
+(function(a,b){"use strict";var c=function(){var b=a.createElement("dummy").style,c="Webkit Moz O ms Khtml".split(" "),d={};return function(a){if(d[a]===void 0){var e=a.charAt(0).toUpperCase()+a.substr(1),f=(a+" "+c.join(e+" ")+e).split(" ");d[a]=null;for(var g in f)if(void 0!==b[f[g]]){d[a]=f[g];break}}return d[a]}}(),d=function(a){return[].slice.call(a)},e=function(a,b){var d,e;for(d in b)b.hasOwnProperty(d)&&(e=c(d),null!==e&&(a.style[e]=b[d]));return a},f=function(a,b){return isNaN(a)?b||0:Number(a)},g=function(b){return a.getElementById(b)},h=function(b,c){return c=c||a,c.querySelector(b)},i=function(b,c){return c=c||a,d(c.querySelectorAll(b))},j=function(b,c,d){var e=a.createEvent("CustomEvent");e.initCustomEvent(c,!0,!0,d),b.dispatchEvent(e)},k=function(a){return" translate3d("+a.x+"px,"+a.y+"px,"+a.z+"px) "},l=function(a,b){var c=" rotateX("+a.x+"deg) ",d=" rotateY("+a.y+"deg) ",e=" rotateZ("+a.z+"deg) ";return b?e+d+c:c+d+e},m=function(a){return" scale("+a+") "},n=function(a){return" perspective("+a+"px) "},o=function(){return g(b.location.hash.replace(/^#\/?/,""))},p=function(a){var c=b.innerHeight/a.height,d=b.innerWidth/a.width,e=c>d?d:c;return a.maxScale&&e>a.maxScale&&(e=a.maxScale),a.minScale&&a.minScale>e&&(e=a.minScale),e},q=a.body,r=navigator.userAgent.toLowerCase(),s=null!==c("perspective")&&q.classList&&q.dataset&&-1===r.search(/(iphone)|(ipod)|(android)/);s?(q.classList.remove("impress-not-supported"),q.classList.add("impress-supported")):q.className+=" impress-not-supported ";var t={},u={width:1024,height:768,maxScale:1,minScale:0,perspective:1e3,transitionDuration:1e3},v=function(){return!1},w=b.impress=function(c){if(!s)return{init:v,"goto":v,prev:v,next:v};if(c=c||"impress",t["impress-root-"+c])return t["impress-root-"+c];var r={},w=null,x=null,y=null,z=null,A=null,B=g(c),C=a.createElement("div"),D=!1,E=null,F=function(a){E!==a&&(j(a,"impress:stepenter"),E=a)},G=function(a){E===a&&(j(a,"impress:stepleave"),E=null)},H=function(a,b){var c=a.dataset,d={translate:{x:f(c.x),y:f(c.y),z:f(c.z)},rotate:{x:f(c.rotateX),y:f(c.rotateY),z:f(c.rotateZ||c.rotate)},scale:f(c.scale,1),el:a};a.id||(a.id="step-"+(b+1)),r["impress-"+a.id]=d,e(a,{position:"absolute",transform:"translate(-50%,-50%)"+k(d.translate)+l(d.rotate)+m(d.scale),transformStyle:"preserve-3d"})},I=function(){if(!D){var b=h("meta[name='viewport']")||a.createElement("meta");b.content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no",b.parentNode!==a.head&&(b.name="viewport",a.head.appendChild(b));var g=B.dataset;z={width:f(g.width,u.width),height:f(g.height,u.height),maxScale:f(g.maxScale,u.maxScale),minScale:f(g.minScale,u.minScale),perspective:f(g.perspective,u.perspective),transitionDuration:f(g.transitionDuration,u.transitionDuration)},A=p(z),d(B.childNodes).forEach(function(a){C.appendChild(a)}),B.appendChild(C),a.documentElement.style.height="100%",e(q,{height:"100%",overflow:"hidden"});var k={position:"absolute",transformOrigin:"top left",transition:"all 0s ease-in-out",transformStyle:"preserve-3d"};e(B,k),e(B,{top:"50%",left:"50%",transform:n(z.perspective/A)+m(A)}),e(C,k),q.classList.remove("impress-disabled"),q.classList.add("impress-enabled"),y=i(".step",B),y.forEach(H),x={translate:{x:0,y:0,z:0},rotate:{x:0,y:0,z:0},scale:1},D=!0,j(B,"impress:init",{api:t["impress-root-"+c]})}},J=function(a){return"number"==typeof a?a=0>a?y[y.length+a]:y[a]:"string"==typeof a&&(a=g(a)),a&&a.id&&r["impress-"+a.id]?a:null},K=null,L=function(a,c){if(!D||!(a=J(a)))return!1;b.scrollTo(0,0);var d=r["impress-"+a.id];w&&(w.classList.remove("active"),q.classList.remove("impress-on-"+w.id)),a.classList.add("active"),q.classList.add("impress-on-"+a.id);var g={rotate:{x:-d.rotate.x,y:-d.rotate.y,z:-d.rotate.z},translate:{x:-d.translate.x,y:-d.translate.y,z:-d.translate.z},scale:1/d.scale},h=g.scale>=x.scale;c=f(c,z.transitionDuration);var i=c/2;a===w&&(A=p(z));var j=g.scale*A;return w&&w!==a&&G(w),e(B,{transform:n(z.perspective/j)+m(j),transitionDuration:c+"ms",transitionDelay:(h?i:0)+"ms"}),e(C,{transform:l(g.rotate,!0)+k(g.translate),transitionDuration:c+"ms",transitionDelay:(h?0:i)+"ms"}),(x.scale===g.scale||x.rotate.x===g.rotate.x&&x.rotate.y===g.rotate.y&&x.rotate.z===g.rotate.z&&x.translate.x===g.translate.x&&x.translate.y===g.translate.y&&x.translate.z===g.translate.z)&&(i=0),x=g,w=a,b.clearTimeout(K),K=b.setTimeout(function(){F(w)},c+i),a},M=function(){var a=y.indexOf(w)-1;return a=a>=0?y[a]:y[y.length-1],L(a)},N=function(){var a=y.indexOf(w)+1;return a=y.length>a?y[a]:y[0],L(a)};return B.addEventListener("impress:init",function(){y.forEach(function(a){a.classList.add("future")}),B.addEventListener("impress:stepenter",function(a){a.target.classList.remove("past"),a.target.classList.remove("future"),a.target.classList.add("present")},!1),B.addEventListener("impress:stepleave",function(a){a.target.classList.remove("present"),a.target.classList.add("past")},!1)},!1),B.addEventListener("impress:init",function(){var a="";B.addEventListener("impress:stepenter",function(c){b.location.hash=a="#/"+c.target.id},!1),b.addEventListener("hashchange",function(){b.location.hash!==a&&L(o())},!1),L(o()||y[0],0)},!1),q.classList.add("impress-disabled"),t["impress-root-"+c]={init:I,"goto":L,next:N,prev:M}};w.supported=s})(document,window),function(a,b){"use strict";var c=function(a,b){var c=null;return function(){var d=this,e=arguments;clearTimeout(c),c=setTimeout(function(){a.apply(d,e)},b)}};a.addEventListener("impress:init",function(d){var e=d.detail.api;a.addEventListener("keydown",function(a){(9===a.keyCode||a.keyCode>=32&&34>=a.keyCode||a.keyCode>=37&&40>=a.keyCode)&&a.preventDefault()},!1),a.addEventListener("keyup",function(a){if(9===a.keyCode||a.keyCode>=32&&34>=a.keyCode||a.keyCode>=37&&40>=a.keyCode){switch(a.keyCode){case 33:case 37:case 38:e.prev();break;case 9:case 32:case 34:case 39:case 40:e.next()}a.preventDefault()}},!1),a.addEventListener("click",function(b){for(var c=b.target;"A"!==c.tagName&&c!==a.documentElement;)c=c.parentNode;if("A"===c.tagName){var d=c.getAttribute("href");d&&"#"===d[0]&&(c=a.getElementById(d.slice(1)))}e.goto(c)&&(b.stopImmediatePropagation(),b.preventDefault())},!1),a.addEventListener("click",function(b){for(var c=b.target;(!c.classList.contains("step")||c.classList.contains("active"))&&c!==a.documentElement;)c=c.parentNode;e.goto(c)&&b.preventDefault()},!1),a.addEventListener("touchstart",function(a){if(1===a.touches.length){var c=a.touches[0].clientX,d=.3*b.innerWidth,f=null;d>c?f=e.prev():c>b.innerWidth-d&&(f=e.next()),f&&a.preventDefault()}},!1),b.addEventListener("resize",c(function(){e.goto(a.querySelector(".active"),500)},250),!1)},!1)}(document,window);</script>
+    <script>impress().init();</script>
+    <script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script>
+    <script>
+	function fullScreen(el) {
+		el.requestFullScreen = el.requestFullScreen || el.mozRequestFullScreen || el.webkitRequestFullScreen;
+		el.requestFullScreen();
+	}
+    document.querySelector('h1').addEventListener('dblclick', function() {
+        fullScreen(document.documentElement);
+    });
+	function init() {
+	    var prettify = false;
+	    var blocks = document.querySelectorAll('pre code');
+	    for (var i = 0; i < blocks.length ; i++) {
+	        blocks[i].className += ' prettyprint linenums';
+	        prettify = true;
+	    }
+	    if (prettify) prettyPrint();
+	}
+	window.onload = init;
+	</script>
+</body>
+</html>

@@ -26,8 +26,8 @@ module.exports = {
 	entry: { // page list
 		// test: ['./a.scss'],
 		// index: ['./main.js'], post: ['./a.js', './b.js', './a.scss'],
-		// index: ['webpack/hot/dev-server', './main.js', './a.scss'], post: ['./a.js', './b.js', './a.scss'],
-		index: ['webpack/hot/dev-server', './main.js', './a.scss', './b.js'], post: ['./a.js', './b.js', './a.scss', './b.js'], // test common
+		index: ['webpack/hot/dev-server', './main.js', './a.scss'], post: ['./a.js', './b.js', './a.scss'],
+		// index: ['webpack/hot/dev-server', './main.js', './a.scss', './b.js'], post: ['./a.js', './b.js', './a.scss', './b.js'], // test common
 	},
 	output: {
 		path: './dist', // 编译后文件存放的路径(可用[hash])

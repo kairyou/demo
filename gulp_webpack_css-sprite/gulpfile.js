@@ -21,7 +21,7 @@ function getDirs(srcpath, ignores) {
 	ignores = ignores || [];
 	var reg = new RegExp(ignores.join('|'));
 	return fs.readdirSync(srcpath).filter(function(file) {
-		return fs.statSync(path.join(srcpath, file)).isDirectory() && !file.match(reg);
+		return fs.statSync(path.join(srcpath, file)).isDirectory() && (ignores.length ? !file.match(reg) : true);
 	});
 }
 

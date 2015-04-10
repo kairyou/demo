@@ -13,8 +13,7 @@
     "del": "^1.1.1",
     "extract-text-webpack-plugin": "^0.5.0",
     "file-loader": "^0.8.1",
-    "node-sass": "^3.0.0-pre",
-    "sass-loader": "^0.5.0",
+    "sass-loader": "^0.4.2",
     "style-loader": "^0.8.3",
     "url-loader": "^0.5.5",
     "webpack": "^1.7.3"
