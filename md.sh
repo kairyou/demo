@@ -21,7 +21,7 @@ help () {
 }
 # npm install -g markdown-impress
 if [[ $file && -f "$file" ]]; then
-	$prefix mtoi -i $filename.md -o $filename.html
+	$prefix mtoi -i $filename.md -o ../kairyou.github.io/$filename.html
 else
 	help;
 fi
