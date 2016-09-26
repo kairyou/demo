@@ -1,2 +1,4 @@
 _tmp/
 node_modules/
+docker/php-demo/vendor
+docker/php-demo/docker/nginx/log

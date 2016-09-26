@@ -1,0 +1,38 @@
+# nginx+php+mysql+redis
+version: '2'
+services:
+  nginx:
+    # restart: always
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    # links:
+    #   - "php-fpm"
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/log:/var/log/nginx
+      - ./:/var/www/html # for php
+  php-fpm:
+    build: ./docker/dockerfile/php5
+    image: php:5-fpm-alpine-custom
+    # ports:
+    #   - "9000:9000"
+    # links:
+      # - "mysql:mysql" # 数据库服务器:localhost要改成mysql
+      # - "redis"
+    volumes:
+      - ./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini
+      - ./:/var/www/html
+  mysql:
+    # container_name: mysql
+    image: dgraziotin/mysql
+    # ports:
+    #   - "3306:3306"
+    # volumes:
+    #   - ./mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ADMIN_PASS: "admin"
+  redis:
+    image: redis:alpine
+    # ports:
+    #   - "6379:6379"
